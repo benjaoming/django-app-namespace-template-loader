@@ -1,8 +1,27 @@
-====================================
-Django App Namespace Template Loader
-====================================
+===================
+django-apptemplates
+===================
 
-|travis-develop| |coverage-develop|
+|travis-develop| |coverage-develop| |PyPi|
+
+Name change notification
+------------------------
+
+This project used to be called ``django-app-namespace-template-loader`` but a
+decision has been made to merge with ``django-apptemplates``. The merge does not
+actually include any code from ``django-apptemplates`` but rather bumps that
+application to 2.0.
+
+The reason is to avoid having to projects addressing exactly the same issue.
+
+Please update your PyPi requirements to use ``django-apptemplates``.
+
+More background of the decision in
+`this issue <https://github.com/Fantomas42/django-apptemplates/issues/14>`_.
+
+
+Introduction
+------------
 
 Provides a template loader that allows you to load a template from a
 specific application. This allows you to both **extend** and **override** a
@@ -90,10 +109,10 @@ Will render: ::
 Installation
 ------------
 
-First of all install ``django-app-namespace-template-loader`` with your
+First of all install ``django-apptemplates`` with your
 favorite package manager. Example : ::
 
-    $ pip install django-app-namespace-template-loader
+    $ pip install django-apptemplates
 
 Once installed, add ``app_namespace.Loader`` to the ``TEMPLATE_LOADERS``
 setting of your project. ::
@@ -142,9 +161,13 @@ version 0.3.1 of the package.
 If you want to use this application with Python 2.6, use the version 0.2 of
 the package.
 
-.. |travis-develop| image:: https://travis-ci.org/Fantomas42/django-app-namespace-template-loader.png?branch=develop
+.. |travis-develop| image:: https://travis-ci.org/Fantomas42/django-apptemplates.png?branch=develop
    :alt: Build Status - develop branch
-   :target: http://travis-ci.org/Fantomas42/django-app-namespace-template-loader
-.. |coverage-develop| image:: https://coveralls.io/repos/Fantomas42/django-app-namespace-template-loader/badge.png?branch=develop
+   :target: http://travis-ci.org/Fantomas42/django-apptemplates
+.. |coverage-develop| image:: https://coveralls.io/repos/Fantomas42/django-apptemplates/badge.png?branch=develop
    :alt: Coverage of the code
-   :target: https://coveralls.io/r/Fantomas42/django-app-namespace-template-loader
+   :target: https://coveralls.io/r/Fantomas42/django-apptemplates
+.. |PyPi| image:: https://badge.fury.io/py/django-apptemplates.svg
+   :target: https://pypi.python.org/pypi/django-apptemplates/
+   :alt: PyPi download page
+

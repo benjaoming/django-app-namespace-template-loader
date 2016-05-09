@@ -1,20 +1,20 @@
-"""Setup script for django-app-namespace-template-loader"""
+"""Setup script for django-apptemplates"""
 import os
 
 from setuptools import setup
 from setuptools import find_packages
 
-__version__ = '0.4'
+__version__ = '2.0'
 __license__ = 'BSD License'
 
 __author__ = 'Fantomas42'
 __email__ = 'fantomas42@gmail.com'
 
-__url__ = 'https://github.com/Fantomas42/django-app-namespace-template-loader'
+__url__ = 'https://github.com/Fantomas42/django-apptemplates'
 
 
 setup(
-    name='django-app-namespace-template-loader',
+    name='django-apptemplates',
     version=__version__,
     zip_safe=False,
 
