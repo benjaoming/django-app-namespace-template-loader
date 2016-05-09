@@ -10,7 +10,7 @@ Name change notification
 This project used to be called ``django-app-namespace-template-loader`` but a
 decision has been made to merge with ``django-apptemplates``. The merge does not
 actually include any code from ``django-apptemplates`` but rather bumps that
-application to 2.0.
+application to 2.0, keeping the code from this project.
 
 The reason is to avoid having to projects addressing exactly the same issue.
 
