@@ -1,7 +1,7 @@
 [run]
-source		= app_namespace
-omit		= app_namespace/tests/*
-                  app_namespace/demo/*
+source		= apptemplates
+omit		= apptemplates/tests/*
+                  apptemplates/demo/*
 
 [report]
 exclude_lines	=
