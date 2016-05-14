@@ -146,6 +146,20 @@ Known limitations
 with ``django.template.loaders.cached.Loader`` and inheritance based on
 empty namespaces.
 
+
+Authors and Maintainers
+-----------------------
+
+Before version 2.0, django-apptemplates was created and maintained by:
+
+ - Peter Bittner (current maintainer)
+ - Tomas Zulberti (former maintainer)
+ - Konrad Wojas (original author)
+
+Since 2.0+, the project's codebase was replaced by the compatible project django-app-namespace-template-loader by author of django-blog-zinnia:
+
+ - Fantomas42 (author and maintainer)
+
 Notes
 -----
 
