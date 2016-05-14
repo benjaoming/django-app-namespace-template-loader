@@ -1,4 +1,4 @@
-"""Urls for the app_namespace demo"""
+"""Urls for the apptemplates demo"""
 from django.conf.urls import url
 from django.views.generic import TemplateView
 

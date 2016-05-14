@@ -114,15 +114,15 @@ favorite package manager. Example : ::
 
     $ pip install django-apptemplates
 
-Once installed, add ``app_namespace.Loader`` to the ``TEMPLATE_LOADERS``
+Once installed, add ``apptemplates.Loader`` to the ``TEMPLATE_LOADERS``
 setting of your project. ::
 
     TEMPLATE_LOADERS = [
-      'app_namespace.Loader',
+      'apptemplates.Loader',
       ... # Other template loaders
     ]
 
-With Django >= 1.8 ``app_namespace.Loader`` should be added to the
+With Django >= 1.8 ``apptemplates.Loader`` should be added to the
 ``'loaders'`` section in the OPTIONS dict of the ``DjangoTemplates`` backend
 instead. ::
 
@@ -131,7 +131,7 @@ instead. ::
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
             'OPTIONS': {
                 'loaders': [
-                    'app_namespace.Loader',
+                    'apptemplates.Loader',
                     'django.template.loaders.filesystem.Loader',
                     'django.template.loaders.app_directories.Loader',
                 ],
@@ -142,7 +142,7 @@ instead. ::
 Known limitations
 =================
 
-``app_namespace.Loader`` can not work properly if you use it in conjunction
+``apptemplates.Loader`` can not work properly if you use it in conjunction
 with ``django.template.loaders.cached.Loader`` and inheritance based on
 empty namespaces.
 

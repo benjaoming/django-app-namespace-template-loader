@@ -1,4 +1,4 @@
-"""Tests for app_namespace"""
+"""Tests for apptemplates"""
 import os
 import sys
 import shutil
@@ -12,7 +12,7 @@ from django.template import TemplateDoesNotExist
 from django.template.loaders import app_directories
 from django.test.utils import override_settings
 
-from app_namespace import Loader
+from apptemplates import Loader
 
 
 class LoaderTestCase(TestCase):
@@ -29,60 +29,60 @@ class LoaderTestCase(TestCase):
             except TypeError:
                 return Engine()
 
-        app_namespace_loader = Loader(build_engine())
+        apptemplates_loader = Loader(build_engine())
         app_directory_loader = app_directories.Loader(build_engine())
 
         template_directory = app_directory_loader.load_template(
             'admin/base.html')[0]
-        template_namespace = app_namespace_loader.load_template(
+        template_namespace = apptemplates_loader.load_template(
             'admin:admin/base.html')[0]
         context = Context({})
         self.assertEquals(template_directory.render(context),
                           template_namespace.render(context))
 
     def test_load_template_source(self):
-        app_namespace_loader = Loader(Engine())
+        apptemplates_loader = Loader(Engine())
         app_directory_loader = app_directories.Loader(Engine())
 
         template_directory = app_directory_loader.load_template_source(
             'admin/base.html')
-        template_namespace = app_namespace_loader.load_template_source(
+        template_namespace = apptemplates_loader.load_template_source(
             'admin:admin/base.html')
         self.assertEquals(template_directory[0], template_namespace[0])
-        self.assertTrue('app_namespace:admin:' in template_namespace[1])
+        self.assertTrue('apptemplates:admin:' in template_namespace[1])
         self.assertTrue('admin/base.html' in template_namespace[1])
 
         self.assertRaises(TemplateDoesNotExist,
-                          app_namespace_loader.load_template_source,
+                          apptemplates_loader.load_template_source,
                           'no-namespace-template')
         self.assertRaises(TemplateDoesNotExist,
-                          app_namespace_loader.load_template_source,
+                          apptemplates_loader.load_template_source,
                           'no.app.namespace:template')
 
     def test_load_template_source_empty_namespace(self):
-        app_namespace_loader = Loader(Engine())
+        apptemplates_loader = Loader(Engine())
         app_directory_loader = app_directories.Loader(Engine())
 
         template_directory = app_directory_loader.load_template_source(
             'admin/base.html')
-        template_namespace = app_namespace_loader.load_template_source(
+        template_namespace = apptemplates_loader.load_template_source(
             ':admin/base.html')
 
         self.assertEquals(template_directory[0], template_namespace[0])
-        self.assertTrue('app_namespace:django.contrib.admin:' in
+        self.assertTrue('apptemplates:django.contrib.admin:' in
                         template_namespace[1])
         self.assertTrue('admin/base.html' in template_namespace[1])
 
         self.assertRaises(TemplateDoesNotExist,
-                          app_namespace_loader.load_template_source,
+                          apptemplates_loader.load_template_source,
                           ':template')
 
     def test_load_template_source_dotted_namespace(self):
-        app_namespace_loader = Loader(Engine())
+        apptemplates_loader = Loader(Engine())
 
-        template_short = app_namespace_loader.load_template_source(
+        template_short = apptemplates_loader.load_template_source(
             'admin:admin/base.html')
-        template_dotted = app_namespace_loader.load_template_source(
+        template_dotted = apptemplates_loader.load_template_source(
             'django.contrib.admin:admin/base.html')
 
         self.assertEquals(template_short[0], template_dotted[0])
@@ -93,7 +93,7 @@ class LoaderTestCase(TestCase):
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
             'OPTIONS': {
-                'loaders': ('app_namespace.Loader',
+                'loaders': ('apptemplates.Loader',
                             'django.template.loaders.app_directories.Loader')
             }
         }
@@ -108,7 +108,7 @@ class TemplateTestCase(TestCase):
         named admin/base_site.html on the filesystem
         overriding the title markup of the template.
         In this test we can view the advantage of using
-        the app_namespace template loader.
+        the apptemplates template loader.
         """
         context = Context({})
         mark = 'Django administration'
@@ -191,7 +191,7 @@ class TemplateTestCase(TestCase):
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
             'OPTIONS': {
                 'loaders': (
-                    'app_namespace.Loader',
+                    'apptemplates.Loader',
                     'django.template.loaders.app_directories.Loader')
             }
         }
@@ -287,7 +287,7 @@ class ApplicationConfig(AppConfig):
                 'OPTIONS': {
                     'loaders': [
                         ('django.template.loaders.cached.Loader', [
-                            'app_namespace.Loader',
+                            'apptemplates.Loader',
                             'django.template.loaders.app_directories.Loader']),
                     ]
                 }

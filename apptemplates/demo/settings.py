@@ -1,4 +1,4 @@
-"""Settings for the app_namespace demo"""
+"""Settings for the apptemplates demo"""
 import os
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -9,7 +9,7 @@ STATIC_URL = '/static/'
 
 SECRET_KEY = 'secret-key'
 
-ROOT_URLCONF = 'app_namespace.demo.urls'
+ROOT_URLCONF = 'apptemplates.demo.urls'
 
 TEMPLATES = [
     {
@@ -19,7 +19,7 @@ TEMPLATES = [
         ],
         'OPTIONS': {
             'debug': DEBUG,
-            'loaders': ('app_namespace.Loader',
+            'loaders': ('apptemplates.Loader',
                         'django.template.loaders.filesystem.Loader',
                         'django.template.loaders.app_directories.Loader')
         }
@@ -27,9 +27,9 @@ TEMPLATES = [
 ]
 
 INSTALLED_APPS = (
-    'app_namespace.demo.application_extension',
-    'app_namespace.demo.application_appconfig.apps.ApplicationConfig',
-    'app_namespace.demo.application',
+    'apptemplates.demo.application_extension',
+    'apptemplates.demo.application_appconfig.apps.ApplicationConfig',
+    'apptemplates.demo.application',
 )
 
 SILENCED_SYSTEM_CHECKS = ['1_7.W001', '1_8.W001']

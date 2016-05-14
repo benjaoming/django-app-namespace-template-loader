@@ -96,7 +96,7 @@ class Loader(BaseLoader):
         if app:
             yield NamespaceOrigin(
                 app_name=app,
-                name='app_namespace:%s:%s' % (app, template_name),
+                name='apptemplates:%s:%s' % (app, template_name),
                 template_name=template_path,
                 loader=self)
 
@@ -107,7 +107,7 @@ class Loader(BaseLoader):
             self._already_used.append(file_path)
             yield NamespaceOrigin(
                 app_name=app,
-                name='app_namespace:%s:%s' % (app, template_name),
+                name='apptemplates:%s:%s' % (app, template_name),
                 template_name=template_path,
                 loader=self)
 
