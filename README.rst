@@ -35,10 +35,12 @@ This is the issue that this package tries to resolve.
 Examples:
 ---------
 
-You want to change the titles of the admin site, you would originally
-created this template: ::
+You want to change the titles of the admin site (located in
+``my-project/templates/admin/base_site.html``), you would originally create
+this template:
 
-    $ cat my-project/templates/admin/base_site.html
+.. code-block:: html+django
+
     {% extends "admin/base.html" %}
     {% load i18n %}
 
@@ -50,9 +52,11 @@ created this template: ::
 
     {% block nav-global %}{% endblock %}
 
-Extend and override version with a namespace: ::
+But instead, you can extend ``my-project/templates/admin/base_site.html`` and
+override Django's version with a namespace:
 
-    $ cat my-project/templates/admin/base_site.html
+.. code-block:: html+django
+
     {% extends "admin:admin/base_site.html" %}
 
     {% block title %}{{ title }} - My Project{% endblock %}
@@ -64,9 +68,11 @@ Extend and override version with a namespace: ::
 Note that in this version the block ``nav-global`` does not have to be
 present because of the inheritance.
 
-Shorter version without namespace: ::
+Shorter version of ``my-project/templates/admin/base_site.html`` without
+namespace:
 
-    $ cat my-project/templates/admin/base_site.html
+.. code-block:: html+django
+
     {% extends ":admin/base_site.html" %}
 
     {% block title %}{{ title }} - My Project{% endblock %}
@@ -79,28 +85,39 @@ If we do not specify the application namespace, the first matching template
 will be used. This is useful when several applications provide the same
 templates but with different features.
 
-Example of multiple empty namespaces: ::
+Example of multiple empty namespaces:
 
-    $ cat my-project/application/templates/application/template.html
+``my-project/application/templates/application/template.html``
+
+.. code-block:: html+django
+
     {% block content%}
     <p>Application</p>
     {% endblock content%}
 
-    $ cat my-project/application_extension/templates/application/template.html
+``my-project/application_extension/templates/application/template.html``
+
+.. code-block:: html+django
+
     {% extends ":application/template.html" %}
     {% block content%}
     {{ block.super }}
     <p>Application extension</p>
     {% endblock content%}
 
-    $ cat my-project/templates/application/template.html
+``my-project/templates/application/template.html``
+
+.. code-block:: html+django
+
     {% extends ":application/template.html" %}
     {% block content%}
     {{ block.super }}
     <p>Application project</p>
     {% endblock content%}
 
-Will render: ::
+Will render:
+
+.. code-block:: html+django
 
     <p>Application</p>
     <p>Application extension</p>
@@ -110,12 +127,14 @@ Installation
 ------------
 
 First of all install ``django-apptemplates`` with your
-favorite package manager. Example : ::
+favorite package manager. Example::
 
     $ pip install django-apptemplates
 
 Once installed, add ``apptemplates.Loader`` to the ``TEMPLATE_LOADERS``
-setting of your project. ::
+setting of your project.
+
+.. code-block:: python
 
     TEMPLATE_LOADERS = [
       'apptemplates.Loader',
@@ -124,7 +143,9 @@ setting of your project. ::
 
 With Django >= 1.8 ``apptemplates.Loader`` should be added to the
 ``'loaders'`` section in the OPTIONS dict of the ``DjangoTemplates`` backend
-instead. ::
+instead.
+
+.. code-block:: python
 
     TEMPLATES = [
         {
@@ -167,7 +188,7 @@ Based originally on: http://djangosnippets.org/snippets/1376/
 
 Requires: Django >= 1.8
 
-Tested with Python 2.7, 3.3, 3.4.
+Tested with Python 2.7, 3.3, 3.4, 3.5.
 
 If you want to use this application for previous versions of Django, use the
 version 0.3.1 of the package.
